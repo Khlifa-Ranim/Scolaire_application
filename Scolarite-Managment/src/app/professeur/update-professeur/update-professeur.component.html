@@ -1,0 +1,56 @@
+<form  [formGroup]="professeurForm" (ngSubmit)="onSubmit()">
+    <fieldset>
+        <div class="form-group">
+            <input type="hidden" formControlName="id" class="form-control">
+        </div>
+      
+        <div class="form-group">
+            <label for="disabledTextInput">Name</label>
+            <input formControlName="name" name="name" type="text" id="name" class="form-control" placeholder="Add Name" >
+            <div *ngIf="professeurForm.get('name')?.errors && (professeurForm.get('name')?.dirty || professeurForm.get('name')?.touched)" class="error">
+                <small *ngIf="professeurForm.get('name')?.errors?.['required']">Name number is required.</small>
+            </div>
+        </div>
+       <!-- Email input with error message -->
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input formControlName="email" type="email" id="email" class="form-control" placeholder="Enter email">
+        <div *ngIf="professeurForm.get('email')?.errors && (professeurForm.get('email')?.dirty || professeurForm.get('email')?.touched)" class="error">
+        <small *ngIf="professeurForm.get('email')?.errors?.['required']" >Email is required.</small>
+        <small *ngIf="professeurForm.get('email')?.errors?.['email']">Please enter a valid email address.</small>
+        </div>
+    </div>
+  
+    <!-- Phone input with error message -->
+    <div class="form-group">
+        <label for="phone">Phone:</label>
+        <input formControlName="phone" type="text" id="phone" class="form-control" placeholder="Enter 8-digit phone number">
+        <div *ngIf="professeurForm.get('phone')?.errors && (professeurForm.get('phone')?.dirty || professeurForm.get('phone')?.touched)" class="error">
+        <small *ngIf="professeurForm.get('phone')?.errors?.['required']">Phone number is required.</small>
+        <small *ngIf="professeurForm.get('phone')?.errors?.['pattern']">Phone number must be exactly 8 digits.</small>
+        </div>
+    </div>
+  
+        <div class="form-group">
+            <label for="disabledTextInput">Course Title:</label>
+            <input formControlName="matierTitle" name="matierTitle" type="text" id="level of study" class="form-control" placeholder="Add Course Title" >
+            <div *ngIf="professeurForm.get('matierTitle')?.errors && (professeurForm.get('matierTitle')?.dirty || professeurForm.get('matierTitle')?.touched)" class="error">
+            <small *ngIf="professeurForm.get('matierTitle')?.errors?.['required']">Course Title number is required.</small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="disabledTextInput"> Image :</label>
+            <input formControlName="imageUrl" name="imageUrl" class="form-control" id="imageUrl" placeholder="Url Image" />
+            <div *ngIf="professeurForm.get('imageUrl')?.errors && (professeurForm.get('imageUrl')?.dirty || professeurForm.get('imageUrl')?.touched)" class="error">
+                <small *ngIf="professeurForm.get('imageUrl')?.errors?.['required']">Course Title number is required.</small>
+            </div>
+        </div>
+
+    <div  class="mt-3 me-10 ml-10">
+        <!-- Buttons -->
+        <button type="submit" class="btn btn-primary me-2 px-3 py-2">Update</button> 
+        <button (click)="onClose()" class="btn btn-secondary ms-2 px-3 py-2">Close</button> 
+    
+      </div>
+    </fieldset>
+</form>

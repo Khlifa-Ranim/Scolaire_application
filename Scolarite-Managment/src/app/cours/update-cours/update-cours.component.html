@@ -1,0 +1,39 @@
+<form  [formGroup]="coursForm" (ngSubmit)="onSubmit()">
+    <fieldset>
+        <div class="form-group">
+            <input type="hidden" formControlName="id" class="form-control">
+        </div>
+      
+        <div class="form-group">
+            <label for="disabledTextInput">Name</label>
+            <input formControlName="name" name="name" type="text" id="name" class="form-control" placeholder="Add Name" >
+            <div *ngIf="coursForm.get('name')?.errors && (coursForm.get('name')?.dirty || coursForm.get('name')?.touched)" class="error">
+                <small *ngIf="coursForm.get('name')?.errors?.['required']">Name number is required.</small>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="disabledTextInput"> Professeur :</label>
+            <input formControlName="professeur" name="professeur" class="form-control" id="professeur" placeholder="Url Image" />
+            <div *ngIf="coursForm.get('professeur')?.errors && (coursForm.get('professeur')?.dirty || coursForm.get('professeur')?.touched)" class="error">
+                <small *ngIf="coursForm.get('professeur')?.errors?.['required']">Course Title number is required.</small>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="disabledTextInput">Description:</label>
+            <input formControlName="description" name="description" type="text" id="description" class="form-control" placeholder="Add level Of Study" >
+            <div *ngIf="coursForm.get('description')?.errors && (coursForm.get('description')?.dirty || coursForm.get('description')?.touched)" class="error">
+            <small *ngIf="coursForm.get('description')?.errors?.['required']">Course Title number is required.</small>
+            </div>
+        </div>
+      
+
+    <div  class="mt-3 me-10 ml-10">
+        <!-- Buttons -->
+        <button type="submit" class="btn btn-primary me-2 px-3 py-2">Update</button> 
+        <button (click)="onClose()" class="btn btn-secondary ms-2 px-3 py-2">Close</button> 
+    
+      </div>
+    </fieldset>
+</form>

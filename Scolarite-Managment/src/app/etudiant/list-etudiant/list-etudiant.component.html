@@ -1,0 +1,54 @@
+<div>
+  
+    <div class="input-group mb-3">
+      <input type="text" [(ngModel)]="searchText" placeholder="Search by name, email or Level Of Study.." class="form-control mb-3" (input)="filterEtudiants()">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" (click)="filterEtudiants()"><i class="fa fa-search"></i></button>
+      </div>
+    </div>
+  
+  <div class="d-flex flex-row flex-wrap">
+  
+    <div *ngFor="let etudiants of etudiant" class="col-md-6 col-xl-3 mb-3">
+      <div *ngIf="matchesSearchCriteria(etudiants)" class="card">
+  
+    
+      <div class="card">
+        <div class="card-body row">
+          <div class="col-6">
+            <a href=""><img src="{{etudiants.imageUrl}}" alt="" class="img-fluid rounded-circle w-60"></a>
+          </div>
+          <div class="col-6 card-title align-self-center mb-0">
+            <h3>{{etudiants?.name}}</h3>
+          </div>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><i class="fa fa-envelope float-right"></i>Email: {{etudiants?.email}}</li>
+        </ul>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Level Of Study: {{etudiants?.levelOfStudy}}</li>
+        </ul>
+        <div class="card-body">
+          <div class="float-right btn-group btn-group-sm">
+            <!-- Edit button -->
+            <a (click)="editEtudiant(etudiants)" *ngIf="authService.isAdmin()" class="btn btn-success tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit">
+                <a class="btn btn-success tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit">
+
+                <i class="fa fa-pencil"></i> Edit
+            </a>
+          </a>
+            <!-- Delete button -->
+            <a  class="btn btn-danger tooltips" *ngIf="authService.isAdmin()" data-original-title="Delete">
+
+            <a (click)="onDeleteEtudiant(etudiants.id, etudiants.name, etudiants.levelOfStudy)" class="btn btn-danger tooltips" data-original-title="Delete">
+              <i class="fa fa-times"></i> Delete
+            </a>
+          </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  </div>
+  </div>

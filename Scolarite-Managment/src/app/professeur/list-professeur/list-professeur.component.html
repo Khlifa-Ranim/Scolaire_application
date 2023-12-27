@@ -1,0 +1,47 @@
+<div class="search-container">
+  <div class="input-group mb-3">
+    <input type="text" [(ngModel)]="searchText" class="form-control" placeholder="Search by name, email, course title or phone..." aria-label="Search" (input)="filterProfesseurs()">
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary" type="button" (click)="filterProfesseurs()"><i class="fa fa-search"></i></button>
+    </div>
+  </div>
+
+
+<div class="d-flex flex-row flex-wrap">
+
+  <div *ngFor="let professeur of professeurs" class="col-md-6 col-xl-3 mb-3">
+    <div *ngIf="matchesSearchCriteria(professeur)" class="card">
+
+  
+    <div class="card">
+      <div class="card-body row">
+        <div class="col-6">
+          <a href=""><img src="{{professeur.imageUrl}}" alt="" class="img-fluid rounded-circle w-60"></a>
+        </div>
+        <div class="col-6 card-title align-self-center mb-0">
+          <h5>{{professeur?.name}}</h5>
+          <p>{{professeur?.matierTitle}}</p>
+        </div>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><i class="fa fa-envelope float-right"></i>Email: {{professeur?.email}}</li>
+        <li class="list-group-item"><i class="fa fa-phone float-right"></i>{{professeur?.phone}}</li>
+      </ul>
+      <div class="card-body">
+        <div class="float-right btn-group btn-group-sm">
+          <!-- Edit button -->
+          <a (click)="editProfesseur(professeur)" a *ngIf="authService.isAdmin()"class="btn btn-success tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit">
+            <i class="fa fa-pencil"></i> Edit
+          </a>
+          <!-- Delete button -->
+          <a (click)="onDeleteProfesseur(professeur.id, professeur.name, professeur.matierTitle)" a *ngIf="authService.isAdmin()" class="btn btn-danger tooltips" data-original-title="Delete">
+            <i class="fa fa-times"></i> Delete
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
